@@ -1,12 +1,15 @@
 (column-number-mode t)             ; Show column number in mode-line
 (setq inhibit-startup-screen t) ;disables welcome screen on start
 ;(delete-selection-mode 1)          ; Delete selected region on write
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 
 (package-initialize)
 
+;; checks if use-package is installed and installs it if it doesn't
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (require 'use-package)
@@ -14,16 +17,20 @@
 (eval-when-compile
   (require 'use-package))
 
+
 (use-package auto-complete
   :config
   (global-auto-complete-mode t)  ;;enable global auto-complete
   )
 
+
 (use-package windmove
   :config
   ;; use shift + arrow keys to switch between visible buffers
   ;; (windmove-default-keybindings)
-)
+  )
+
+
 (use-package flycheck
 	     :config
 	     (add-hook 'c-mode-hook 'global-flycheck-mode) ;(global-flycheck-mode)
@@ -36,16 +43,19 @@
 		  (flycheck-add-next-checker 'c/c++-cppcheck '(warning . cstyle))))
 )	     
 
+
 (use-package rainbow-delimiters
 	     :config
 	     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ;;activate rainbow-delimiter programming mode
 (add-hook 'ciao-mode-hook 'rainbow-delimiters-mode) ;;activate rainbow-delimiter ciao-mode
 )
 
+
 (use-package undo-tree
 	     :config
 	     (global-undo-tree-mode) ;enable undo-tree package globally
 )
+
 
 (use-package magit
 	     :config
@@ -55,6 +65,7 @@
 
 ;; Activate auto-complete for latex modes (AUCTeX or Emacs' builtin one).
 (add-to-list 'ac-modes 'latex-mode)
+
 
 (use-package web-mode
 	     :config
@@ -68,7 +79,6 @@
 	     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 )
 
-(use-package impatient-mode)
 
 (use-package impatient-mode)
 
@@ -79,7 +89,6 @@
 
 (elpy-enable)
 
-;(load-theme 'monokai)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -91,7 +100,7 @@
  '(custom-enabled-themes (quote (afternoon)))
  '(custom-safe-themes
    (quote
-    ("28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d5b121d69e48e0f2a84c8e4580f0ba230423391a78fcb4001ccb35d02494d79e" "38e64ea9b3a5e512ae9547063ee491c20bd717fe59d9c12219a0b1050b439cdd" "2997ecd20f07b99259bddba648555335ffb7a7d908d8d3e6660ecbec415f6b95" "1e67765ecb4e53df20a96fb708a8601f6d7c8f02edb09d16c838e465ebe7f51b" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" default)))
+    ("e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d5b121d69e48e0f2a84c8e4580f0ba230423391a78fcb4001ccb35d02494d79e" "38e64ea9b3a5e512ae9547063ee491c20bd717fe59d9c12219a0b1050b439cdd" "2997ecd20f07b99259bddba648555335ffb7a7d908d8d3e6660ecbec415f6b95" "1e67765ecb4e53df20a96fb708a8601f6d7c8f02edb09d16c838e465ebe7f51b" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" default)))
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -141,3 +150,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;; this must be place after Custom to load monokai
+(load-theme 'monokai t)
