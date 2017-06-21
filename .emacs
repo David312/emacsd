@@ -8,7 +8,6 @@
 
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
-
 (column-number-mode t)             ; Show column number in mode-line
 (setq inhibit-startup-screen t) ;disables welcome screen on start
 ;(delete-selection-mode 1)          ; Delete selected region on write
@@ -37,9 +36,28 @@
   (add-to-list 'ac-modes 'latex-mode)
   )
 
+(use-package whitespace
+  :ensure t
+  :config
+  (global-whitespace-mode t)  ; show whitespaces etc.
+  (setq whitespace-style '(face lines-tail)
+	whitespace-line-column 80) ; set max columns number (80 by default)
+  
+  )
+
 (use-package yasnippet
   :ensure t
   )
+
+
+(use-package markdown-mode
+  :ensure t
+  )
+
+(use-package markdown-preview-eww
+  :ensure t
+  )
+
 
 (use-package windmove
   :config
@@ -84,6 +102,7 @@
 
 
 (use-package magit
+  :ensure t
   :config
   (global-set-key (kbd "C-x g") 'magit-status)
   )
@@ -135,7 +154,7 @@
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("c335adbb7d7cb79bc34de77a16e12d28e6b927115b992bccc109fb752a365c72" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d5b121d69e48e0f2a84c8e4580f0ba230423391a78fcb4001ccb35d02494d79e" "38e64ea9b3a5e512ae9547063ee491c20bd717fe59d9c12219a0b1050b439cdd" "2997ecd20f07b99259bddba648555335ffb7a7d908d8d3e6660ecbec415f6b95" "1e67765ecb4e53df20a96fb708a8601f6d7c8f02edb09d16c838e465ebe7f51b" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" default)))
+    ("a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "c335adbb7d7cb79bc34de77a16e12d28e6b927115b992bccc109fb752a365c72" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "28ec8ccf6190f6a73812df9bc91df54ce1d6132f18b4c8fcc85d45298569eb53" "d5b121d69e48e0f2a84c8e4580f0ba230423391a78fcb4001ccb35d02494d79e" "38e64ea9b3a5e512ae9547063ee491c20bd717fe59d9c12219a0b1050b439cdd" "2997ecd20f07b99259bddba648555335ffb7a7d908d8d3e6660ecbec415f6b95" "1e67765ecb4e53df20a96fb708a8601f6d7c8f02edb09d16c838e465ebe7f51b" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" default)))
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -154,7 +173,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (bind-key dash diminish epl pkg-info popup yasnippet auto-complete-auctex auto-complete-c-headers auctex flycheck rainbow-delimiters undo-tree use-package auto-complete)))
+    (auctex bind-key dash diminish epl pkg-info popup yasnippet auto-complete-auctex auto-complete-c-headers flycheck rainbow-delimiters undo-tree use-package auto-complete)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
